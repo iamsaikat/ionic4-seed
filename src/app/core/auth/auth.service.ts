@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -7,18 +6,18 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   constructor(
-    private http: HttpClient
+    private storage: Storage
   ) { }
 
   getToken(): string {
-    return localStorage.getItem('token');
+    return this.storage.getItem('token');
   }
 
   deleteToken() {
-    localStorage.clear();
+    this.storage.clear();
   }
 
   setAuth(user) {
-    localStorage.setItem('token', user.token);
+    this.storage.setItem('token', user.token);
   }
 }
